@@ -48,7 +48,7 @@ function getMonthlyKPI(monthKey) {
     var rev = 0, qty = 0; var cust = {};
     orders.forEach(function (o) {
       rev += o.total;
-      if (o.phone) cust[o.phone] = 1;
+      { const ck = _custKeyOfOrder_(o); if (ck) cust[ck] = 1; }
       if (!byEmp[o.emp]) byEmp[o.emp] = { orders: 0, revenue: 0 };
       byEmp[o.emp].orders++; byEmp[o.emp].revenue += o.total;
       if (!byPriceType[o.priceType]) byPriceType[o.priceType] = { orders: 0, revenue: 0 };
